@@ -8,7 +8,7 @@ import java.util.Set;
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
     private String name;
     @ManyToMany (mappedBy = "authors")
     private Set<Book> books = new HashSet<>();
@@ -20,7 +20,7 @@ public class Author {
         this.name = name;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -54,7 +54,7 @@ public class Author {
 
     @Override
     public int hashCode() {
-        return id;
+        return (int) (id ^ (id >>> 32));
     }
 
     @Override
@@ -62,7 +62,6 @@ public class Author {
         return "Author{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", books=" + books +
                 '}';
     }
 }

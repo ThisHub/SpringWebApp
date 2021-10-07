@@ -8,7 +8,7 @@ import java.util.Set;
 public class Publisher {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
     private String name;
     @OneToMany
     @JoinColumn(name = "publisher")
@@ -22,7 +22,7 @@ public class Publisher {
         this.name = name;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -53,7 +53,7 @@ public class Publisher {
 
     @Override
     public int hashCode() {
-        return id;
+        return (int) (id ^ (id >>> 32));
     }
 
     @Override
